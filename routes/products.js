@@ -14,7 +14,7 @@ export default async function products(app, options) {
         }, 
         async (request, reply) => {
             request.log.info(products);
-        return await products.find();
+        return await products.find().toArray();
     });
 
     app.post('/products', {
