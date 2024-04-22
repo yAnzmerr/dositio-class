@@ -6,6 +6,8 @@ import jwt from '@fastify/jwt';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import dotenv from 'dotenv';
+import multipart from '@fastify/multipart';
+import fastifyStatic from '@fastify/static';
 
 dotenv.config();
 
@@ -26,6 +28,13 @@ const MyCustomError = createError('MyCustomError', 'Something stranged happened.
 
 export async function build(opts){
     const app = fastify(opts);
+
+    await app.register(multipart);
+
+    await app.register(fastifyStatic, {
+        root: path.join(__dirname, 'public'),
+        prefix: '/public/'
+    });
 
     await app.register(jwt, {
         secret: opts.jwt_secret
