@@ -23,7 +23,8 @@ export default async function products(app, options) {
                 properties: {
                     id: { type: 'integer' },
                     name: { type: 'string' },
-                    qtd: { type: 'integer' }
+                    qtd: { type: 'integer' },
+                    category: {type: 'string' }
                 },
                 required: ['name', 'qtd']
             }
